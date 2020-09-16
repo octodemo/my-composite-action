@@ -23,7 +23,7 @@ runs:
       shell: bash
 
     - run: curl -H "Authorization: token ${{ inputs.token }}" https://api.github.com/orgs/${{ inputs.org }} > org.json
-      shell: bash
+      # shell: bash
 
     - id: export_organization
       run: echo "set-output name=organization_payload::`cat org.json | base64`"
