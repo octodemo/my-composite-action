@@ -1,0 +1,34 @@
+name: My Composite Action
+description: Composes a number of action steps into a single action
+
+inputs:
+  org:
+    description: An organization name
+    required: true
+    default: octodemo
+
+  token:
+    description: GitHub Personal Access Token
+    required: true
+
+outputs:
+  my_resource:
+    description: A resource Identifier
+    value: ${{ steps.resource_step.outputs.my_resource }}
+
+runs:
+  using: composite
+  steps:
+    - run: echo "Getting organization details for '${{ inputs.org }}'"
+      shell: bash
+
+    - run: curl -H "Authorization: token ${{ inputs.token }}" https://api.github.com/orgs/${{ inputs.org }} > org.json
+      shell: bash
+
+    - id: export_organization
+      run: echo "set-output name=organization_payload::`cat org.json | base64`"
+      shell: bash
+
+    - id: resource_step
+      run: echo "::set-output name=my_resource::res-$(echo $RANDOM)"
+      shell: bash
