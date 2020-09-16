@@ -36,3 +36,5 @@ runs:
     - id: resource_step
       run: echo "::set-output name=my_resource::res-$(echo $RANDOM)"
       shell: bash
+
+  post: 'echo'
