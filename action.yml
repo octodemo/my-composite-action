@@ -30,6 +30,8 @@ runs:
       run: echo "::set-output name=organization_payload::`cat org.json | base64`"
       shell: bash
 
+    - run: echo "::set-output name=test_value::abc123"
+
     - id: resource_step
       run: echo "::set-output name=my_resource::res-$(echo $RANDOM)"
       shell: bash
