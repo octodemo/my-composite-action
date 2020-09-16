@@ -27,7 +27,7 @@ runs:
       shell: bash
 
     - id: export_organization
-      run: echo "set-output name=organization_payload::`cat org.json | base64`"
+      run: echo "::set-output name=organization_payload::`cat org.json | base64`"
       shell: bash
 
     - id: resource_step
