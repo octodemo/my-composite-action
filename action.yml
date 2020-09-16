@@ -31,3 +31,4 @@ runs:
       shell: bash
 
     - run: echo "POST RUN STEP"
+      shell: bash
