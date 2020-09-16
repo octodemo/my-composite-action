@@ -22,8 +22,9 @@ runs:
     - run: echo "Getting organization details for '${{ inputs.org }}'"
       shell: bash
 
-    - run: curl -H "Authorization: token ${{ inputs.token }}" https://api.github.com/orgs/${{ inputs.org }} > org.json
-      # shell: bash
+    - run: |
+        curl -H "Authorization: token ${{ inputs.token }}" https://api.github.com/orgs/${{ inputs.org }} > org.json
+      shell: bash
 
     - id: export_organization
       run: echo "set-output name=organization_payload::`cat org.json | base64`"
